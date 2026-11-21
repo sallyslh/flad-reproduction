@@ -127,7 +127,7 @@ def init_server(model_type, dataset_name, input_shape, max_flow_len):
 
 def init_client(subfolder, X_train, Y_train, X_val, Y_val, dataset_name, time_window, max_flow_len):
     client = {}
-    client['name'] = subfolder.strip('/').split('/')[-1] #name of the client based on the folder name
+    client['name'] = os.path.basename(os.path.normpath(subfolder)) #name of the client based on the folder name (changed from split('/') so it also works on Windows)
     client['folder'] = subfolder
     X_train_tensor = tf.convert_to_tensor(X_train, dtype=tf.float32)
     client['training'] = (X_train_tensor,Y_train)

@@ -49,7 +49,7 @@ def load_set(folder_path,set_type,seed):
         files = glob.glob(dataset_folder + "/*" + '-' + set_type + '.hdf5')
 
         for file in files:
-            filename = file.split('/')[-1].strip()
+            filename = os.path.basename(file).strip()  # changed from file.split('/')[-1] so it also works on Windows
             tw = int(filename.split('-')[0].strip().replace('t', ''))
             mfl = int(filename.split('-')[1].strip().replace('n', ''))
             dn = filename.split('-')[2].strip()
